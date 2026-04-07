@@ -114,3 +114,83 @@ public static class LogicList
         Console.WriteLine($"El numero menor: {listNumber.Min()}");
     }
 }
+
+public class Students
+{
+    public string nameStudent { get; set; }
+    public string lastNameStudent { get; set; }
+    
+    public void student(string firstName, string secondName)
+    {
+        this.nameStudent = firstName;
+        this.lastNameStudent = secondName;
+    }
+    
+    public void addStudent(string firstName, string secondName, List<Students> listStudents)
+    {
+        Students student = new Students();
+        student.nameStudent = firstName;
+        student.lastNameStudent = secondName;
+        
+        listStudents.Add(student);
+        // Console.WriteLine("Estudiante añadido con exito! ");
+    }
+    
+    // Logic patron menu
+    
+    // Create student
+    public void createStudent(List<Students> ListStudents)
+    {
+        Console.WriteLine("Digite el nombre del estudiante: ");
+        string firstNameStudent = Console.ReadLine()??"No name";
+        
+        Console.WriteLine("Digite el apellido del estudiante: ");
+        string lastNameStudent = Console.ReadLine()??"No last name";
+        if(firstNameStudent == "" && lastNameStudent == "")
+        {
+            Console.WriteLine("El estudiante no puede estar vacío");
+        }
+        else
+        {
+            Console.WriteLine("Creando el estudiante...");
+            addStudent(firstNameStudent, lastNameStudent, ListStudents);
+            Console.WriteLine("Estudiante añadido a la lista con exito!");
+        }
+    }
+    
+    public void listStudents(List<Students> students)
+    {
+        Console.WriteLine("Lista de estudiantes");
+        if (students.Count() > 0)
+        {
+            foreach (var student in students)
+            {
+                Console.WriteLine($"Nombre: {student.nameStudent}, Apellido: {student.lastNameStudent}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("La lista de estudiantes se encuentra vacía");
+        }
+
+    }
+
+    public void deleteStudent(int indexStudent, List<Students> listStudents)
+    {
+        // Looking for if exist the index in the list
+        if (listStudents.Count > 0 && indexStudent < listStudents.Count)
+        {
+            listStudents.RemoveAt(indexStudent);
+        }
+        else
+        {
+            Console.WriteLine("La lista se encuentra vacía o supera los limites esperados");
+        }
+        
+
+    }
+
+    
+    
+    
+}
